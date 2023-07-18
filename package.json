@@ -1,9 +1,12 @@
 {
-  "name": "regional-indo",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "csv-parser": "^3.0.0"
-  }
+   "name": "regional-indo",
+   "version": "1.0.0",
+   "main": "index.js",
+   "license": "MIT",
+   "scripts": {
+      "start": "node index.js"
+   },
+   "dependencies": {
+      "csv-parser": "^3.0.0"
+   }
 }
