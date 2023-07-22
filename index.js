@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+const cors = require('cors');
 const csvParser = require('csv-parser');
 
 async function readCSV(file, column, value) {
@@ -26,17 +27,19 @@ const server = http.createServer(async (req, res) => {
    const response = async (...args) => res.end(JSON.stringify(await readCSV(...args)));
    const code = req.url.split('/')[2];
 
-   if (req.url === '/provinces') {
-      response('data/provinces.csv');
-   } else if (startsWith('/regencies/')) {
-      response('data/regencies.csv', 'province_code', code);
-   } else if (startsWith('/districts/')) {
-      response('data/districts.csv', 'regency_code', code);
-   } else if (startsWith('/villages/')) {
-      response('data/villages.csv', 'district_code', code);
-   } else {
-      res.end(JSON.stringify({ message: 'Api wilayah indonesia' }));
-   }
+   cors()(req, res, () => {
+      if (req.url === '/provinces') {
+         response('data/provinces.csv');
+      } else if (startsWith('/regencies/')) {
+         response('data/regencies.csv', 'province_code', code);
+      } else if (startsWith('/districts/')) {
+         response('data/districts.csv', 'regency_code', code);
+      } else if (startsWith('/villages/')) {
+         response('data/villages.csv', 'district_code', code);
+      } else {
+         res.end(JSON.stringify({ message: 'Api wilayah indonesia' }));
+      }
+   })
 });
 
 server.listen(3000, () => {
