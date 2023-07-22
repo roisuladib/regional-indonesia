@@ -4,7 +4,7 @@
 Daftar API pencarian alamat di indonesia dengan data terbaru Kemendagri tahun 2022.
 
 
-## Demo
+## ENDPOINT URL
 
 https://alamat.cyclic.app/
 
